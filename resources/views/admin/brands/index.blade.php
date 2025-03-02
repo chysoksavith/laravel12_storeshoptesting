@@ -14,18 +14,20 @@
                         <tr>
                             <th>#</th>
                             <th>Brand Name</th>
+                            <th>Is Active</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($brands as $index => $category)
+                        @forelse ($brands as $index => $brand)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $category->name }}</td>
+                                <td>{{ $brand->name }}</td>
+                                <td>{{ $brand->is_active ? 'Active' : 'Inactive' }}</td>
                                 <td>
-                                    {{-- <a href="{{ route('brands.edit', $category->id) }}"
+                                    <a href="{{ route('brands.edit', $brand->id) }}"
                                         class="btn btn-sm btn-warning">Edit</a>
-                                    <form action="{{ route('brands.destroy', $category->id) }}" method="POST"
+                                    {{-- <form action="{{ route('brands.destroy', $brand->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')

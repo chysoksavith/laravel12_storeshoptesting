@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,10 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        $request->validated($request->all());
         try {
-            Brand::create($request->all());
+            $validated = $request->validated();
+            $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+            Brand::create($validated);
             return redirect()->route('brands.index')->with('success', 'Brand crated successfully');
         } catch (\Exception $e) {
             return redirect()->back()
@@ -54,15 +56,18 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('admin.brands.edit', compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        $validated = $request->validated();
+        $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+        $brand->update($validated);
+        return redirect()->route('brands.index')->with('success', 'Brand updated successfully!');
     }
 
     /**
