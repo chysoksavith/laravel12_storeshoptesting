@@ -25,15 +25,13 @@
                                 <td>{{ $brand->name }}</td>
                                 <td>{{ $brand->is_active ? 'Active' : 'Inactive' }}</td>
                                 <td>
-                                    <a href="{{ route('brands.edit', $brand->id) }}"
-                                        class="btn btn-sm btn-warning">Edit</a>
-                                    {{-- <form action="{{ route('brands.destroy', $brand->id) }}" method="POST"
-                                        class="d-inline">
+                                    <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger"
                                             onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form> --}}
+                                    </form>
                                 </td>
                             </tr>
                         @empty
