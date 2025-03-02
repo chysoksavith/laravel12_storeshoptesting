@@ -7,23 +7,15 @@
             <h2>Categories</h2>
             <a href="{{ route('categories.create') }}" class="btn btn-primary">Create Category</a>
         </div>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Sample Category</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group">
+                    @forelse ($categories as $category)
+                        @include('admin.category.category-tree', ['category' => $category])
+                    @empty
+                        <li class="list-group-item">No categories found</li>
+                    @endforelse
+                </ul>
+            </div>
+        </div>
 </div>@endsection
