@@ -72,6 +72,8 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="{{ route('categories.index') }}"><i class="bi bi-box-seam"></i> <span>Categories</span></a>
+        <a href="{{ route('brands.index') }}"><i class="bi bi-box-seam"></i> <span>Brands</span></a>
+
         <a href="#"><i class="bi bi-box-seam"></i> <span>Products</span></a>
         <a href="#"><i class="bi bi-cart"></i> <span>Orders</span></a>
         <a href="#"><i class="bi bi-person"></i> <span>Users</span></a>
