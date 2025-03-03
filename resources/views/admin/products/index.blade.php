@@ -13,20 +13,35 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Brand Name</th>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Stock</th>
                             <th>Is Active</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($brands as $index => $brand)
+                        @forelse ($products as $index => $product)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $brand->name }}</td>
-                                <td>{{ $brand->is_active ? 'Active' : 'Inactive' }}</td>
                                 <td>
-                                    <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                    <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" class="d-inline">
+                                    <img src="{{ Storage::url($product->image) }}" width="100px" height="100px"
+                                        alt="Product Image">
+                                </td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->brand->name }}</td>
+                                <td>{{ $product->price }} $</td>
+                                <td>{{ $product->stock }}</td>
+                                <td>{{ $product->is_active ? 'Active' : 'Inactive' }}</td>
+                                <td>
+                                    <a href="{{ route('products.edit', $product->id) }}"
+                                        class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger"
@@ -36,9 +51,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="text-center">No brands found</td>
+                                <td colspan="3" class="text-center">No products found</td>
                             </tr>
-                        @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
             </div>
