@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category', 'brand')->orderBy('created_at', 'desc')->paginate(16);
+        $products = Product::with('category', 'brand')->orderBy('created_at', 'desc')->paginate(1);
         return view('admin.products.index', compact('products'));
     }
 
@@ -84,6 +84,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if ($product->image && Storage::disk('public')->exists($product->image)) {
+            Storage::disk('public')->delete($product->image);
+        }
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 }
