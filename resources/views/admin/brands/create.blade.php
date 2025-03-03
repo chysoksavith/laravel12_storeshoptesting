@@ -23,7 +23,7 @@
                     @csrf
                     {{-- name --}}
                     <div class="form-group mt-3">
-                        <label for="name">Category Name</label>
+                        <label for="name">Brand Name</label>
                         <input type="text" name="name" id="name" class="form-control"
                             value="{{ old('name') }}">
                     </div>

@@ -31,7 +31,11 @@ class Category extends Model
     {
         return $this->children()->with('allChildren');
     }
-
+    // relational
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
     // create slug category
 
     protected static function boot()
